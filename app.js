@@ -4,13 +4,17 @@ var prompt2 = require('prompt-sync')();
 var ope = prompt('Enter a operator: ');
 var prompt1 = require('prompt-sync')();
 var num3 = prompt('Enter a 2nd number: ');
-if(ope=='+'){
-    var total=Number(num)+Number(num3);    
-}else if(ope=='-'){
-    var total=Number(num)-Number(num3); 
-}else if(ope=='/'){
-    var total=Number(num)/Number(num3); 
-}else if(ope=='*'){
-    var total=Number(num)*Number(num3); 
-}
+
+switch(ope) {
+    case '+':
+        var total=Number(num)+Number(num3);      
+      break;
+    case '-':
+        var total=Number(num)-Number(num3); 
+      break;
+    case  '/':
+        var total=Number(num)/Number(num3);
+    case '*':
+        var total=Number(num)*Number(num3);     
+  }
 console.log(total);
