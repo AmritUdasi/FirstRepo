@@ -2,16 +2,13 @@ var prompt = require('prompt-sync')();
 var num = prompt('total items :');
 var mpimpt= new Map();
 var mpbst= new Map();
-var importedgoods=['oil','iron','steel'];
-var nobasetax=['headache','pills','food','chocolate','oil','book']
-for(var i=0;i<importedgoods.length;i++){
-    mpimpt.set(importedgoods[i],1);
-}
+var nobasetax=['headache','pills','food','chocolates','oil','book','chocolate']
 for(var i=0;i<nobasetax.length;i++){
     mpbst.set(nobasetax[i],1);
 }
-var result=[];
 var m=0;
+var ans=0;
+var total=0;
 while(m!=num){
     m++;
     var prompt = require('prompt-sync')();
@@ -21,8 +18,9 @@ while(m!=num){
     var quant=arr[0];
     let bt=false;
     let impt=false;
+    total+=Number(arr[x-1]);
     for(var i=0;i<x;i++){
-        if(mpimpt.has(arr[i])){
+        if(arr[i]=='imported'){
             impt=true;
         }
         if(mpbst.has(arr[i])){
@@ -32,20 +30,21 @@ while(m!=num){
     var tax=0;
     var base=arr[x-1];
     var imptax=0;
-    
-    if(!bt){
-        tax=parseFloat(arr[x-1])*0.10;
-        base=parseFloat(arr[x-1])*0.90;
-    } 
     if(impt){
         imptax=base*0.05;
-        base=base*0.95;
     }
-    var str=''+base +'        '+imptax + '        '+tax;
-    result.push(str)
+    if(!bt){
+        tax=parseFloat(arr[x-1])*0.10;
+    }
+    imptax=parseFloat(imptax);
+    tax=parseFloat(tax);
+    ans+=parseFloat(imptax);
+    ans+=parseFloat(tax);
+
 }
-console.log('Base price'+' '+'Import_Tax'+ ' '+'Basic Sales tax ');
-for(var i=0;i<result.length;i++){
-    console.log(result[i]);
-    console.log("\n");
-}
+total += parseFloat(ans);
+console.log("Total:"+ total.toFixed(2));
+console.log("Sales Tax:"+ ans.toFixed(2));
+
+
+
